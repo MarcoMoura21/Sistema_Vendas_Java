@@ -451,27 +451,26 @@ public class FrmCadastroCliente extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         //Botão Salvar
-       
-            Clientes obj = new Clientes();
 
-            obj.setNome(txtnome.getText());
-            obj.setRg(txtrg.getText());
-            obj.setCpf(txtcpf.getText());
-            obj.setEmail(txtemail.getText());
-            obj.setTelefone(txtfone.getText());
-            obj.setCelular(txtcelular.getText());
-            obj.setCep(txtcep.getText());
-            obj.setEndereco(txtendereco.getText());
-            obj.setNumero(Integer.parseInt(txtnumero.getText()));
-            obj.setComplemento(txtcomplemento.getText());
-            obj.setBairro(txtbairro.getText());
-            obj.setCidade(txtcidade.getText());
-            obj.setEstado(cbestado.getSelectedItem().toString());
+        Clientes obj = new Clientes();
 
-            ClientesDAO dao = new ClientesDAO();
-            
-            dao.cadastrarCliente(obj);        
+        obj.setNome(txtnome.getText());
+        obj.setRg(txtrg.getText());
+        obj.setCpf(txtcpf.getText());
+        obj.setEmail(txtemail.getText());
+        obj.setTelefone(txtfone.getText());
+        obj.setCelular(txtcelular.getText());
+        obj.setCep(txtcep.getText());
+        obj.setEndereco(txtendereco.getText());
+        obj.setNumero(Integer.parseInt(txtnumero.getText()));
+        obj.setComplemento(txtcomplemento.getText());
+        obj.setBairro(txtbairro.getText());
+        obj.setCidade(txtcidade.getText());
+        obj.setEstado(cbestado.getSelectedItem().toString());
 
+        ClientesDAO dao = new ClientesDAO();
+
+        dao.cadastrarCliente(obj);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
