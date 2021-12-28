@@ -23,7 +23,7 @@ public class FrmCadastroCliente extends javax.swing.JFrame {
         DefaultTableModel dados = (DefaultTableModel) tblClientes.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Clientes c: lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
@@ -185,11 +185,21 @@ public class FrmCadastroCliente extends javax.swing.JFrame {
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/imagens/Del.png"))); // NOI18N
         btnExcluir.setToolTipText("Excluir");
         btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/imagens/update.png"))); // NOI18N
         btnEditar.setToolTipText("Editar");
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/imagens/Save.png"))); // NOI18N
@@ -523,11 +533,79 @@ public class FrmCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-        // TODO add your handling code here:
+        // Pega os dados 
+           jTabbedPane1.setSelectedIndex(0);
 
-
+            txtcodigo.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 0).toString());
+            txtnome.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 1).toString());
+            txtrg.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 2).toString());
+            txtcpf.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 3).toString());
+            txtemail.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 4).toString());
+            txtfone.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 5).toString());
+            txtcelular.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 6).toString());
+            txtcep.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 7).toString());
+            txtendereco.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 8).toString());
+            txtnumero.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 9).toString());
+            txtcomplemento.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 10).toString());
+            txtbairro.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 11).toString());
+            txtcidade.setText(tblClientes.getValueAt(tblClientes.getSelectedRow(), 12).toString());
+            cbestado.setSelectedItem(tblClientes.getValueAt(tblClientes.getSelectedRow(), 13).toString());
 
     }//GEN-LAST:event_tblClientesMouseClicked
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        //Botão Editar
+
+        Clientes obj = new Clientes();
+
+        obj.setNome(txtnome.getText());
+        obj.setRg(txtrg.getText());
+        obj.setCpf(txtcpf.getText());
+        obj.setEmail(txtemail.getText());
+        obj.setTelefone(txtfone.getText());
+        obj.setCelular(txtcelular.getText());
+        obj.setCep(txtcep.getText());
+        obj.setEndereco(txtendereco.getText());
+        obj.setNumero(Integer.parseInt(txtnumero.getText()));
+        obj.setComplemento(txtcomplemento.getText());
+        obj.setBairro(txtbairro.getText());
+        obj.setCidade(txtcidade.getText());
+        obj.setEstado(cbestado.getSelectedItem().toString());
+
+        obj.setId(Integer.parseInt(txtcodigo.getText()));
+
+        ClientesDAO dao = new ClientesDAO();
+
+        dao.alterar(obj);
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        //Botão Excluir
+
+        Clientes obj = new Clientes();
+
+        obj.setId(Integer.parseInt(txtcodigo.getText()));
+
+        ClientesDAO dao = new ClientesDAO();
+
+        dao.excluir(obj);
+
+        txtcodigo.setText(null);
+        txtnome.setText(null);
+        txtrg.setText(null);
+        txtcpf.setText(null);
+        txtemail.setText(null);
+        txtfone.setText(null);
+        txtcelular.setText(null);
+        txtcep.setText(null);
+        txtendereco.setText(null);
+        txtnumero.setText(null);
+        txtcomplemento.setText(null);
+        txtbairro.setText(null);
+        txtcidade.setText(null);
+        cbestado.setSelectedItem(null);
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

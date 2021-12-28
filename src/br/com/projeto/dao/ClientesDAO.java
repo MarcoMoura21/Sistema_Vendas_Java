@@ -100,6 +100,7 @@ public class ClientesDAO {
             }
 
             return lista;
+
         } catch (SQLException erro) {
 
             JOptionPane.showMessageDialog(null, "Erro:" + erro);
@@ -109,21 +110,26 @@ public class ClientesDAO {
     }
 
     public void excluir(Clientes obj) {
-        try {
 
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente", "Atenção",               JOptionPane.YES_NO_OPTION);
+
+        if (confirma== JOptionPane.YES_OPTION){
             // 1º Criando o comando SQL para excluir os dados do Cliente
-            String sql = "delete from tb_clientes where id = ?";
+            String sql = "delete from tb_clientes where id = ?";       
 
-            // 2ª Conectar o banco de dados e organizar o comando SQL
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, obj.getId());
+            try {            
 
-            // Executar o comando SQL
-            stmt.execute();
-            //Fechar a Execução
-            stmt.close();
+                //2ª Conectar o banco de dados e organizar o comando SQL
+                    PreparedStatement stmt = conexao.prepareStatement(sql);
+                    stmt.setInt(1, obj.getId());
 
-            JOptionPane.showMessageDialog(null, "Excluido com sucesso!!!");
+                //Executar o comando SQL
+                    stmt.execute();
+                //Fechar a Execução
+                    stmt.close();
+
+                    JOptionPane.showMessageDialog(null, "Excluido com sucesso!!!");           
+
 
         } catch (SQLException erro) {
 
@@ -132,6 +138,7 @@ public class ClientesDAO {
         }
 
     }
+}
 
     public void alterar(Clientes obj) {
         try {
